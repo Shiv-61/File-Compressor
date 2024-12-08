@@ -41,6 +41,28 @@ public class File_compressor {
     }
 
     // Method to decompress the file
+        public static void decompressFile(String inputFile, String outputFile) {
+        try (FileInputStream input = new FileInputStream(inputFile);
+                FileOutputStream output = new FileOutputStream(outputFile)) {
+
+            int currentChar;
+            int count;
+
+            while ((currentChar = input.read()) != -1) {
+                count = input.read();
+                for (int i = 0; i < count; i++) {
+                    output.write(currentChar);
+                }
+            }
+
+            System.out.println("File decompressed successfully!");
+
+        } catch (IOException e) {
+            System.err.println("Error during file decompression: " + e.getMessage());
+        }
+    }
+
+    
     public static void main(String[] args) {
         char choice;
         Scanner sc = new Scanner(System.in);
